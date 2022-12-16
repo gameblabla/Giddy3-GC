@@ -16,7 +16,7 @@
 #include "samples.h"
 
 extern Mtx GXmodelView2D;
-extern Vector axis;
+extern guVector axis;
 
 extern u8 sprites[], texts[], *mtexts;
 extern u8 *msprites;

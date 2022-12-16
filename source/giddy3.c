@@ -133,15 +133,15 @@ int main( int argc, char *argv[] )
     {
       timing();
       mixaudio();
-      WPAD_ScanPads();
+      PAD_ScanPads();
 
-      wpadheld = WPAD_ButtonsHeld(0);
-      wpaddown = WPAD_ButtonsDown(0);
+      wpadheld = PAD_ButtonsHeld(0);
+      wpaddown = PAD_ButtonsDown(0);
 
       switch( what_are_we_doing )
       {
 				case WAWD_ENDING:
-          if( wpaddown & (WPAD_BUTTON_A|WPAD_BUTTON_2|WPAD_BUTTON_HOME|WPAD_BUTTON_1) )
+          if( wpaddown & (PAD_BUTTON_A|PAD_BUTTON_X) )
 				  {
   					if( endingstate < 9 )
 	  					endingstate = 11;
@@ -149,24 +149,24 @@ int main( int argc, char *argv[] )
 					break;
 
 				case WAWD_TITLES:
-          if( wpaddown & (WPAD_BUTTON_A|WPAD_BUTTON_2|WPAD_BUTTON_HOME|WPAD_BUTTON_1) )
+          if( wpaddown & (PAD_BUTTON_A|PAD_BUTTON_X) )
             go_menus();
           break;
         
         case WAWD_MENU:
-          if( wpaddown & WPAD_BUTTON_RIGHT ) menu_up();
-          if( wpaddown & WPAD_BUTTON_LEFT )  menu_down();
-          if( wpaddown & WPAD_BUTTON_UP )    menu_left();
-          if( wpaddown & WPAD_BUTTON_DOWN )  menu_right();
-          if( wpaddown & WPAD_BUTTON_2 )     done |= menu_do();
-          if( wpaddown & WPAD_BUTTON_HOME )  done = TRUE;
+          if( wpaddown & PAD_BUTTON_RIGHT ) menu_up();
+          if( wpaddown & PAD_BUTTON_LEFT )  menu_down();
+          if( wpaddown & PAD_BUTTON_UP )    menu_left();
+          if( wpaddown & PAD_BUTTON_DOWN )  menu_right();
+          if( wpaddown & PAD_BUTTON_A )     done |= menu_do();
+          if( wpaddown & PAD_TRIGGER_Z )  done = TRUE;
           break;
         
         case WAWD_GAME:
-          pleft  = (wpadheld & WPAD_BUTTON_UP)!=0;
-          pright = (wpadheld & WPAD_BUTTON_DOWN)!=0;
+          pleft  = (wpadheld & PAD_BUTTON_UP)!=0;
+          pright = (wpadheld & PAD_BUTTON_DOWN)!=0;
 
-          if( wpadheld & WPAD_BUTTON_2 )
+          if( wpadheld & PAD_BUTTON_A )
           {
             if( !lpjump )
             {
@@ -187,19 +187,19 @@ int main( int argc, char *argv[] )
           }
 */
 
-          if( wpaddown & WPAD_BUTTON_1 ) spacehit = TRUE;
-          if( wpaddown & WPAD_BUTTON_A ) enterhit = TRUE;
+          if( wpaddown & PAD_BUTTON_X ) spacehit = TRUE;
+          if( wpaddown & PAD_BUTTON_Y ) enterhit = TRUE;
                   
-          if( wpaddown & WPAD_BUTTON_PLUS )
+          if( wpaddown & PAD_BUTTON_START )
           {
             paused = !paused;
             if( paused ) giddy_say( "Paused" );
           }
           
-          if( wpaddown & WPAD_BUTTON_MINUS )
-            musicenabled = !musicenabled;
+          /*if( wpaddown & PAD_BUTTON_MINUS )
+            musicenabled = !musicenabled;*/
 
-          if( wpaddown & WPAD_BUTTON_HOME )
+          if( wpaddown & PAD_TRIGGER_Z )
           {
             killtune();
             titlestate = 0;

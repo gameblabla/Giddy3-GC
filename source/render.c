@@ -43,7 +43,7 @@ BOOL ignorejump = FALSE;
 
 int clevel, llevel, lastinv;
 u32 frame;
-Vector axis = (Vector){ 0, 0, 1 };
+guVector axis = (guVector){ 0, 0, 1 };
 
 extern BOOL pleft,pright,pjump,spacehit,enterhit,paused;
 
@@ -3879,7 +3879,7 @@ void render_giddy( void )
   u8 *whichtex;
   float rot;
 	Mtx m,m1,m2, mv;
-	Vector axis = (Vector){ 0, 0, 1 };
+	guVector axis = (guVector){ 0, 0, 1 };
 	GXTexObj texObj;
 
   if( gid.dieanim )
@@ -5840,8 +5840,7 @@ BOOL render_init( void )
       i++;
     }
 
-	WPAD_Init();
-	WPAD_SetDataFormat( 0, WPAD_FMT_BTNS );
+	PAD_Init();
 
 	VIDEO_SetNextFramebuffer(xfb[fb]);
 	VIDEO_SetBlack(FALSE);
